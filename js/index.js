@@ -35,10 +35,14 @@ function displayUserData(data){
         li.appendChild(p)
         li.appendChild(profile)
         userContainer.appendChild(li)
-        avatar.addEventListener('click', userInformation(e))
+        avatar.addEventListener('click', e=>{
+            fetch(`https://api.github.com/users/${item.login}/repos`)
+            .then(res =>res.json()).then(data => data.forEach(data =>{ 
+                document.createElement('p')
+                p.innerText = `${data.name}, ${data.full_name}, created on: ${data.created_at}`
+                console.log(data)
+            }))
+
+        })
     })
     };
-// Defien the user function that gets user information from the user repos endpoint
-function userInformation(e){
-    
-}
